@@ -13,10 +13,19 @@ defmodule Effects do
     end
 
     def even_print(n) when n > 0 do
-        valid_eprint(n)
+        eprint_aux(n, 1)
     end
 
-    defp valid_eprint(n) when n rem 2 == 0 do
-        IO.puts()
+    defp eprint_aux(1, c) do
+        if rem(c, 2) == 0 do
+            IO.puts(c)
+        end
+    end
+
+    defp eprint_aux(n, c) do
+        if rem(c, 2) == 0 do
+            IO.puts(c)
+        end
+        eprint_aux(n - 1, c + 1)
     end
 end
