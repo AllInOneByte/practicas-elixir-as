@@ -43,15 +43,10 @@ defmodule Manipulating do
         concatenate(l, [])
     end
 
-    defp concatenate([], laux) do
-        laux
-    end
-
-    defp concatenate([h], laux) do
-        append(laux, [h])
-    end
-
     defp concatenate([h | t], laux) do
-        concatenate(t, append(laux, [h]))
+        concatenate(t, append(laux, h))
+    end
+    defp concatenate(l, laux) do
+        append(laux, l)
     end
 end
