@@ -15,12 +15,12 @@ defmodule Manipulating do
         reverse(l, [])
     end
 
-    defp reverse([], acc) do
-        acc
+    defp reverse([], laux) do
+        laux
     end
 
-    defp reverse([h | t], acc) do
-        reverse(t, [h | acc])
+    defp reverse([h | t], laux) do
+        reverse(t, [h | laux])
     end
 
     defp append([], []) do
@@ -46,7 +46,28 @@ defmodule Manipulating do
     defp concatenate([h | t], laux) do
         concatenate(t, append(laux, h))
     end
+
     defp concatenate(l, laux) do
         append(laux, l)
+    end
+
+    def flatten(list) do
+        flatten(list, [])
+    end
+    
+    defp flatten([h | t], laux) when h == [] do
+        flatten(t, laux)
+    end
+    
+    defp flatten([h | t], laux) when is_list(h) do
+        flatten(h, flatten(t, laux))
+    end
+    
+    defp flatten([h | t], laux) do
+        [h | flatten(t, laux)]
+    end
+    
+    defp flatten([], laux) do
+        laux
     end
 end
