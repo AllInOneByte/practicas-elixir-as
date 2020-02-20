@@ -4,7 +4,7 @@ defmodule Db do
     end
 
     def write(db_ref, key, element) do
-       [db_ref | [[key, element]]] 
+       [[key, element] | db_ref] 
     end
 
     def delete(db_ref, key) do
@@ -25,6 +25,6 @@ defmodule Db do
     end
 
     def destroy(_db_ref) do
-        :ok
+        []
     end
 end
