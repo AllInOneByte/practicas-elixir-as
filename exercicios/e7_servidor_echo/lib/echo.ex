@@ -1,32 +1,29 @@
 defmodule Echo do
     def start() do
-        Process.register(spawn(listen()), :echo)
+        Process.register(spawn(Echo, :listen, []), :echo)
         :ok
     end
 
     def stop() do
-        echo = Process.registered() |> Enum.find(fn x -> x == :echo end)
-        send(echo, {:stop})
-        :ok
-    end
-
-    def print(term) do
-        echo = Process.registered() |> Enum.find(fn x -> x == :echo end)
-        send(echo, {:print, term})
-        :ok
-    end
-
-    defp listen() do
+        send(:echo, {:stop, self()})
         receive do
-            {:stop} -> exit(:shutdown)
-            {:print, term} -> printer(term)
-        after
-            5000 -> :timeout
+            :ok -> :ok
         end
     end
 
-    defp printer(term) do
-        IO.puts(term)
-        listen()
+    def print(term) do
+        send(:echo, {:print, term})
+        :ok
+    end
+
+    def listen() do
+        receive do
+            {:stop, pid} ->
+                send(pid, :ok) 
+                exit(:normal)
+            {:print, term} -> 
+                IO.puts(term)
+                listen()
+        end
     end
 end
