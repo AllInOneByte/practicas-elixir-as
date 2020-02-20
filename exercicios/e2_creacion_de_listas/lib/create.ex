@@ -1,8 +1,4 @@
 defmodule Create do
-    def create(0) do
-        []
-    end
-
     def create(n) do
         create_aux(n, 1, [])
     end

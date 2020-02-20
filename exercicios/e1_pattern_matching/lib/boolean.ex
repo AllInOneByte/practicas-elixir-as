@@ -7,27 +7,19 @@ defmodule Boolean do
         true
     end
 
-    def b_and(false, _) do
-        false
-    end
-
-    def b_and(true, false) do
-        false
-    end
-
     def b_and(true, true) do
         true
     end
 
-    def b_or(true, _) do
-        true
-    end
-
-    def b_or(_, true) do
-        true
+    def b_and(_, _) do
+        false
     end
 
     def b_or(false, false) do
         false
+    end
+
+    def b_or(_, _) do
+        true
     end
 end
