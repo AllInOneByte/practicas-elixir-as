@@ -25,6 +25,6 @@ defmodule Db do
     end
 
     def destroy(_db_ref) do
-        []
+        :ok
     end
 end
