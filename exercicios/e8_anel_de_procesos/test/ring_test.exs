@@ -8,7 +8,7 @@ defmodule RingTest do
               m <- positive_integer(),
               msx <- mensaxe(),
               max_run_time: 10000 do
-      IO.puts("Probando con #{inspect(n+1)} procesos e #{inspect(m)} mensaxes #{inspect(msx)}")
+      # IO.puts("Probando con #{inspect(n+1)} procesos e #{inspect(m)} mensaxes #{inspect(msx)}")
       tracer = start_tracing()
       # dámoslle temo ao tracer a poñerse a funcionar
       Process.sleep((n + 1) * m * 10)
